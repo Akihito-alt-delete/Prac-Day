@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+/* centers all content on page */
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* keeps content not too wide */
+.home-main {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* page slides in from bottom */
+.home-page {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* cards float up on hover */
+.home-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 50px rgba(139, 92, 246, 0.15);
+}
+
+/* stats cards appear one by one */
+.stats-card {
+  animation: slideInLeft 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.stats-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stats-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stats-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* action cards have moving shine effect */
+.action-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.action-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent);
+  transition: left 0.7s ease;
+}
+
+.action-card:hover::before {
+  left: 100%;
+}
+
+/* icons float up and down */
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+.floating-icon:nth-child(odd) {
+  animation-delay: 1.5s;
+}
+
+/* glowing effect */
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* text color changes */
+.gradient-text {
+  background: linear-gradient(270deg, #a855f7, #ec4899, #3b82f6, #a855f7);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* dropdown arrow styling */
+.custom-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* loading shimmer effect */
+.shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.1) 25%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* items appear one after another */
+.stagger-item {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* ripple effect when clicked */
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple-button:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* all animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* mobile phones */
+@media (max-width: 768px) {
+  .home-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .action-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* focus outlines for keyboard users */
+.focus-ring:focus {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+}
+
+/* custom scrollbar */
+.dashboard-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.5) transparent;
+}
+
+.dashboard-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dashboard-scroll::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5);
+  border-radius: 3px;
+}
+
+.dashboard-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.7);
+}
